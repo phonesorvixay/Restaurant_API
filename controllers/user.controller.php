@@ -21,10 +21,33 @@ class UserController
             print_r($e);
         }
     }
+    public function updateUser($u)
+    {
+        try {
+            $db = new DatabaseController();
+
+            $sql = "update users set user_name='$u->username',user_password='$u->password' where user_id ='$u->user_id' ";
+            $data = $db->query($sql);
+            if ($data) {
+                PrintJSON("", "update user OK!", 1);
+            } else {
+                PrintJSON("", "update user failed!", 0);
+            }
+        } catch (Exception $e) {
+            print_r($e);
+        }
+    }
     public function deleteUser($u)
     {
         try {
             $db = new DatabaseController();
+            $sql = "select * from `order` where user_id='$u->user_id' ";
+            $name = $db->query($sql);
+    
+            if ($name > 0) {
+                PrintJSON("", " user ID: " . $u->user_id . " have foreign key in order", 0);
+                die();
+            }
             $sql = "delete from users where user_id='$u->user_id'";
             $data = $db->query($sql);
             if ($data) {
@@ -72,7 +95,7 @@ class UserController
         try {
 
             $db = new DatabaseController();
-                $sql = "select user_id,user_name from users where user_id ='$get->user_id' ";
+                $sql = "select * from users where user_id ='$get->user_id' ";
                 $data = $db->query($sql);
                 $json = json_encode($data[0]);
                 echo $json;
@@ -88,7 +111,7 @@ class UserController
 
                 $offset = (($get->page - 1) * $get->limit);
 
-                $sql = "select user_id, user_name from users ";
+                $sql = "select * from users ";
                 if (isset($get->keyword) && $get->keyword != "") {
                     $sql .= "where
                         user_name like '%$get->keyword%'

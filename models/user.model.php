@@ -33,6 +33,17 @@ class UserModel
             die();
         }
     }
+    public function checkForeignKey()
+    {
+        $db = new DatabaseController();
+        $sql = "select * from order where user_id='$this->user_id' ";
+        $name = $db->query($sql);
+
+        if ($name > 0) {
+            PrintJSON("", " user ID: " . $this->user_id . " have foreign key in order", 0);
+            die();
+        }
+    }
     public function validateall()
     {
         foreach ($this as $property => $value) {

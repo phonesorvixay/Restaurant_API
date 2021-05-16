@@ -17,6 +17,10 @@ try {
         $model = new UserModel($json);
         $model->validateall();
         $control->addUser($model);
+    } else if ($m == "updateuser") {
+        $model = new UserModel($json);
+        $model->checkId();
+        $control->updateUser($model);
     } else if ($m == "deleteuser") {
         $model = new UserModel($json);
         $model->checkId();

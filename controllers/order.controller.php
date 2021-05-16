@@ -122,6 +122,30 @@ class OrderController
             PrintJSON("", "Payment failed!", 0);
         }
     }
+    public function changeTable($tk)
+    {
+        try {
+            $db = new PDODBController();
+
+            $db->beginTran();
+
+            $sql = "update `table` set status = 0 where t_id='$tk->old_table'";
+            $db->query($sql);
+            // echo "query1 =>$sql";
+            $sql = "update `order` set t_id = '$tk->new_table' where order_id='$tk->order_id'";
+            $db->query($sql);
+
+            $sql = "update `table` set status = 1 where t_id='$tk->new_table' ";
+            $db->query($sql);
+            // echo "query 2 => $sql";
+            $db->commit();
+
+            PrintJSON("", "Change table OK!", 1);
+        } catch (Exception $e) {
+            print_r($e);
+            PrintJSON("", "Change table failed!", 0);
+        }
+    }
     public function orderList($get)
     {
         try {

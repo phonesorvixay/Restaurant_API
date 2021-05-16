@@ -25,6 +25,9 @@ try {
     } else if ($m == "invoice") {
         $tk = (object) $json;
         $control->invoice($tk);
+    } else if ($m == "changetable") {
+        $tk = (object) $json;
+        $control->changeTable($tk);
     } else if ($m == "payment") {
         $tk = (object) $json;
         $control->payment($tk);
