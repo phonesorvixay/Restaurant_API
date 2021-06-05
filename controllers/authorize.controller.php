@@ -15,20 +15,21 @@ class LoginController
     {
         $db = new DatabaseController();
         $sql = "select * from users where user_name='$u->username' and user_password='$u->password' ";
-        $sql1 = "select user_id,user_name from users where user_name='$u->username' and user_password='$u->password' ";
+        $sql1 = "select user_id,user_name,role from users where user_name='$u->username' and user_password='$u->password' ";
         $name = $db->query($sql);
         $list = $db->query($sql1);
         $row = $name[0];
         if ($name > 0) {
-            echo json_encode(array('status' => "1",
+            echo json_encode(array(
+                'status' => "1",
                 'token' => registerToken($row),
                 'data' => $list[0],
             ));
         } else {
-            
+
             $sql = "select * from users where user_name='$u->username'";
             $name = $db->query($sql);
-            
+
             $sql1 = "select * from users where user_password='$u->password'";
             $pass = $db->query($sql1);
 

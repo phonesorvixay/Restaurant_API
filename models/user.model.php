@@ -6,6 +6,7 @@ class UserModel
     public $username;
     public $password;
     public $new_password;
+    public $role;
 
     public $page;
     public $limit;
@@ -59,6 +60,9 @@ class UserModel
             case 'password':
                 $this->validatePass();
                 break;
+            case 'role':
+                $this->validateRole();
+                break;
         }
     }
     public function validateUsername()
@@ -79,6 +83,13 @@ class UserModel
     {
         if (strlen($this->password) < 6) {
             PrintJSON("", "password is short ", 0);
+            die();
+        }
+    }
+    public function validateRole()
+    {
+        if (empty($this->role)) {
+            PrintJSON("", "Role is empty ", 0);
             die();
         }
     }
