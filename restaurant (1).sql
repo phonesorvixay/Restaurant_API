@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 16, 2021 at 08:58 AM
+-- Generation Time: Jun 05, 2021 at 09:08 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.18
 
@@ -142,20 +142,20 @@ CREATE TABLE IF NOT EXISTS `order` (
 --
 
 INSERT INTO `order` (`order_id`, `user_id`, `t_id`, `order_date`, `status`) VALUES
-(1, 1, 3, '2021-05-11', 0),
+(1, 1, 2, '2021-05-11', 2),
 (2, 1, 2, '2021-05-12', 0),
 (3, 1, 2, '2021-05-13', 2),
 (4, 1, 3, '2021-05-14', 2),
 (5, 1, 3, '2021-05-15', 0),
 (6, 1, 3, '2021-05-15', 0),
 (7, 1, 4, '2021-05-15', 2),
-(8, 1, 8, '2021-05-15', 2),
+(8, 4, 8, '2021-05-15', 2),
 (9, 1, 8, '2021-05-16', 2),
 (10, 1, 8, '2021-05-16', 2),
 (11, 1, 8, '2021-05-16', 2),
-(12, 1, 7, '2021-05-16', 0),
+(12, 6, 7, '2021-05-16', 0),
 (13, 1, 6, '2021-05-16', 0),
-(14, 1, 8, '2021-05-16', 2);
+(14, 4, 8, '2021-05-16', 2);
 
 -- --------------------------------------------------------
 
@@ -176,8 +176,8 @@ CREATE TABLE IF NOT EXISTS `table` (
 --
 
 INSERT INTO `table` (`t_id`, `table_number`, `status`) VALUES
-(2, 'ໂຕະ 7', 0),
-(3, 'ໂຕະ 6', 1),
+(2, 'ໂຕະ 7', 1),
+(3, 'ໂຕະ 6', 0),
 (4, 'ໂຕະ 5', 0),
 (5, 'ໂຕະ 4', 0),
 (6, 'ໂຕະ 3', 1),
@@ -195,20 +195,25 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(60) NOT NULL,
   `user_password` varchar(60) NOT NULL,
+  `role` varchar(60) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_password`) VALUES
-(1, 'admin', '123456'),
-(2, 'superadmin', '123456789'),
-(3, 'customer', '123456789'),
-(4, 'employee', '123456789'),
-(5, 'department', '000'),
-(6, 'brache', '123456789');
+INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `role`) VALUES
+(1, 'admin', '123456', ''),
+(6, 'thon', '1122', ''),
+(8, 'brache', '123456789', ''),
+(9, 'brachde', '123456789', ''),
+(10, 'brdachde', '123456789', ''),
+(11, 'brdac2hde', '123456789', ''),
+(12, 'brd2ac2hde', '123456789', ''),
+(13, 'brd22ac2hde', '123456789', ''),
+(14, 'padmin', '1234567', ''),
+(15, 'padmin2', '1234567', 'admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
