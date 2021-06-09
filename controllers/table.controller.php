@@ -10,7 +10,7 @@ class TableController
     {
         try {
             $db = new DatabaseController();
-            $sql = "insert into `table` (table_number) values ('$get->table_number')";
+            $sql = "insert into `table` (table_number,status) values ('$get->table_number',0)";
             $data = $db->query($sql);
             if ($data) {
                 PrintJSON("", "add table OK!", 1);
