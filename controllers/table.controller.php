@@ -11,7 +11,7 @@ class TableController
         try {
             $db = new DatabaseController();
             $sql = "insert into `table` (table_number) values ('$get->table_number')";
-            $data = $db->query($sql);   
+            $data = $db->query($sql);
             if ($data) {
                 PrintJSON("", "add table OK!", 1);
             } else {
@@ -43,7 +43,7 @@ class TableController
             $sql = "delete from `table` where t_id='$get->t_id'";
             $data = $db->query($sql);
             if ($data) {
-                PrintJSON("", "table ID: " . $get->t_id. " delete Ok", 1);
+                PrintJSON("", "table ID: " . $get->t_id . " delete Ok", 1);
             } else {
                 PrintJSON("", "delete table failed!", 0);
             }
@@ -98,21 +98,18 @@ class TableController
         } catch (Exception $e) {
             print_r($e);
         }
-
     }
     public function getTable($get)
     {
         try {
             $db = new DatabaseController();
 
-                $sql = "select * from `table`  where t_id ='$get->t_id' ";
-                $data = $db->query($sql);
-                $list = json_encode($data);
-                echo $list;
-            
+            $sql = "select * from `table`  where t_id ='$get->t_id' ";
+            $data = $db->query($sql);
+            $list = json_encode($data);
+            echo $list;
         } catch (Exception $e) {
             print_r($e);
         }
-
     }
 }
